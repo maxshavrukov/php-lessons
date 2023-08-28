@@ -1,6 +1,16 @@
 <?php
     session_start();
 
+    unset($_SESSION['user_name']);
+    unset($_SESSION['email']);
+    unset($_SESSION['subject']);
+    unset($_SESSION['message']);
+
+    unset($_SESSION['error_username']);
+    unset($_SESSION['error_email']);
+    unset($_SESSION['error_subject']);
+    unset($_SESSION['error_message']);
+
     function redirect(){
         header('Location: contact.php');
         exit;
@@ -20,7 +30,7 @@
         $_SESSION['error_username'] = "Введите корректное имя";
         redirect();
     }
-    else if(strlen($form) < 5 || strpos($form, "@") == false){
+    else if(strlen($from) < 5 || strpos($from, "@") == false){
         $_SESSION['error_email'] = "Вы ввели некорректный email";
         redirect();
     }
@@ -33,9 +43,6 @@
         redirect();
     }
     else{
-        $_SESSION['error_username'] = "";
-        $_SESSION['error_email'] = "";
-        $_SESSION['error_subject'] = "";
-        $_SESSION['error_message'] = "";
+
     }
     
